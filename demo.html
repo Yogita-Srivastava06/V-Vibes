@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1e3d58;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid #ced4da;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #e24110;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn-primary {
+            background-color: red;
+            border-color: red;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background-color:red;
+            border-color: red;
+        }
+
+        .btn-block {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .text-center {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .confirmation-message {
+            display: none;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .error-message {
+            display: none;
+            padding: 15px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Event Management Registration</h2>
+        <form id="event-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="attendees">Number of Attendees</label>
+                <input type="number" class="form-control" id="attendees" placeholder="Enter number of attendees" required min="1">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        
+        <div class="confirmation-message" id="confirmation-message">
+            Thank you for registering! Your event has been booked successfully.
+        </div>
+
+        <div class="error-message" id="error-message">
+            Oops! There was an error with your submission. Please try again.
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for form submission and confirmation -->
+    <script>
+        document.getElementById('event-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the form from submitting to a server
+
+            // Simple form validation (if needed, can be extended with more complex rules)
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const attendees = document.getElementById('attendees').value;
+
+            if (name && email && attendees > 0) {
+                // Show confirmation message
+                document.getElementById('confirmation-message').style.display = 'block';
+                document.getElementById('error-message').style.display = 'none';
+                
+                // Reset the form
+                document.getElementById('event-form').reset();
+            } else {
+                // Show error message
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('confirmation-message').style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
